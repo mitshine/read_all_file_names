@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<dirent.h>
+#include <cstring>
 
 int main(void)
 {
@@ -10,8 +11,10 @@ int main(void)
     {
         while ((dir = readdir(d)) != NULL)
         {
-            printf("%s\n", dir->d_name);
-        }
+			if (strncmp(dir->d_name + strlen(dir->d_name) - 4, ".txt", 4) == 0) {
+                printf("%s\n", dir->d_name);
+            }
+		}
         closedir(d);
     }
     return(0);
